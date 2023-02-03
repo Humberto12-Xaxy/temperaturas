@@ -1,8 +1,12 @@
 import requests
+import os
+from dotenv import load_dotenv
 
 def get_temperature(ciudad):
     try:
-        response = requests.get(f'https://api.openweathermap.org/data/2.5/weather?q={ciudad}&appid=ad307dd84fbfd1092bc9c7c1fe697223')
+        load_dotenv()
+        key = os.getenv('KEY')
+        response = requests.get(f'https://api.openweathermap.org/data/2.5/weather?q={ciudad}&appid={key}')
         
         if response.status_code == 200:
            json_response = response.json()
